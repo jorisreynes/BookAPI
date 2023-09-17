@@ -1,5 +1,5 @@
-﻿const uri = 'api/TodoItems';
-let todos = [];
+﻿const uri = 'api/BookItems';
+let books = [];
 
 function getItems() {
     fetch(uri)
@@ -10,7 +10,7 @@ function getItems() {
 
 function addItem() {
     const addNameTextbox = document.getElementById('add-name');
-    const addAuthorTextbox = document.getElementById('add-auhtor');
+    const addAuthorTextbox = document.getElementById('add-author');
     const addEditionTextbox = document.getElementById('add-edition');
     const addDescriptionTextbox = document.getElementById('add-description');
     const addEANTextbox = document.getElementById('add-ean');
@@ -49,7 +49,7 @@ function deleteItem(id) {
 }
 
 function displayEditForm(id) {
-    const item = todos.find(item => item.id === id);
+    const item = books.find(item => item.id === id);
 
     document.getElementById('edit-name').value = item.name;
     document.getElementById('edit-author').value = item.author;
@@ -90,13 +90,13 @@ function closeInput() {
 }
 
 function _displayCount(itemCount) {
-    const name = (itemCount === 1) ? 'to-do' : 'to-dos';
+    const name = (itemCount === 1) ? 'livre dans votre liste' : 'livres dans votre liste';
 
-    document.getElementById('counter').innerText = `${itemCount} ${name}`;
+    document.getElementById('counter').innerText = `Vous avez ${itemCount} ${name}`;
 }
 
 function _displayItems(data) {
-    const tBody = document.getElementById('todos');
+    const tBody = document.getElementById('books');
     tBody.innerHTML = '';
 
     _displayCount(data.length);
@@ -123,15 +123,26 @@ function _displayItems(data) {
         td1.appendChild(isReadCheckbox);
 
         let td2 = tr.insertCell(1);
-        let textNode = document.createTextNode(item.name);
-        td2.appendChild(textNode);
+        td2.innerText = item.name;
 
         let td3 = tr.insertCell(2);
-        td3.appendChild(editButton);
+        td3.innerText = item.author;
 
         let td4 = tr.insertCell(3);
-        td4.appendChild(deleteButton);
+        td4.innerText = item.edition;
+
+        let td5 = tr.insertCell(4);
+        td5.innerText = item.description;
+
+        let td6 = tr.insertCell(5);
+        td6.innerText = item.ean;
+
+        let td7 = tr.insertCell(6);
+        td7.appendChild(editButton);
+
+        let td8 = tr.insertCell(7);
+        td8.appendChild(deleteButton);
     });
 
-    todos = data;
+    books = data;
 }
