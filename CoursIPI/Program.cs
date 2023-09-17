@@ -49,13 +49,17 @@ builder.Services.AddSwaggerGen(c =>
 
 
 
-builder.Services.AddDbContext<BookContext>(opt => opt.UseInMemoryDatabase("TodoListIpi2023"));
+//builder.Services.AddDbContext<BookContext>(opt => opt.UseInMemoryDatabase("TodoListIpi2023"));
 
 
 //builder.Services.AddDbContext<BookContext>(options =>
 //    options.UseSqlServer("BookApiContextConnection"));
 
+// Add services to the container.
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+builder.Services.AddDbContext<BookContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 
 var app = builder.Build();
