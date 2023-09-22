@@ -49,15 +49,16 @@ function deleteItem(id) {
 }
 
 function displayEditForm(id) {
+    document.getElementById('editForm').style.display = 'block';
     const item = books.find(item => item.id === id);
 
     document.getElementById('edit-name').value = item.name;
     document.getElementById('edit-author').value = item.author;
+    document.getElementById('edit-edition').value = item.edition;
     document.getElementById('edit-description').value = item.description;
     document.getElementById('edit-ean').value = item.ean;
     document.getElementById('edit-id').value = item.id;
     document.getElementById('edit-isRead').read = item.isRead;
-    document.getElementById('editForm').style.display = 'block';
 }
 
 function updateItem() {
@@ -66,7 +67,10 @@ function updateItem() {
         id: parseInt(itemId, 10),
         isRead: document.getElementById('edit-isRead').checked,
         name: document.getElementById('edit-name').value.trim(),
-        author: document.getElementById('edit-author').value.trim()
+        author: document.getElementById('edit-author').value.trim(),
+        edition: document.getElementById('edit-edition').value.trim(),
+        description: document.getElementById('edit-description').value.trim(),
+        ean: document.getElementById('edit-ean').value.trim()
     };
 
     fetch(`${uri}/${itemId}`, {
