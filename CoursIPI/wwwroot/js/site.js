@@ -16,7 +16,7 @@ function addItem() {
     const addEANTextbox = document.getElementById('add-ean');
 
     const item = {
-        read: false,
+/*        read: false,*/
         name: addNameTextbox.value.trim(),
         author: addAuthorTextbox.value.trim(),
         edition: addEditionTextbox.value.trim(),
@@ -58,14 +58,14 @@ function displayEditForm(id) {
     document.getElementById('edit-description').value = item.description;
     document.getElementById('edit-ean').value = item.ean;
     document.getElementById('edit-id').value = item.id;
-    document.getElementById('edit-isRead').read = item.isRead;
+/*    document.getElementById('edit-isRead').read = item.isRead;*/
 }
 
 function updateItem() {
     const itemId = document.getElementById('edit-id').value;
     const item = {
         id: parseInt(itemId, 10),
-        isRead: document.getElementById('edit-isRead').checked,
+/*        isRead: document.getElementById('edit-isRead').checked,*/
         name: document.getElementById('edit-name').value.trim(),
         author: document.getElementById('edit-author').value.trim(),
         edition: document.getElementById('edit-edition').value.trim(),
@@ -108,10 +108,10 @@ function _displayItems(data) {
     const button = document.createElement('button');
 
     data.forEach(item => {
-        let isReadCheckbox = document.createElement('input');
-        isReadCheckbox.type = 'checkbox';
-        isReadCheckbox.disabled = true;
-        isReadCheckbox.checked = item.isRead;
+        //let isReadCheckbox = document.createElement('input');
+        //isReadCheckbox.type = 'checkbox';
+        //isReadCheckbox.disabled = true;
+        //isReadCheckbox.checked = item.isRead;
 
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
@@ -123,29 +123,29 @@ function _displayItems(data) {
 
         let tr = tBody.insertRow();
 
+        //let td1 = tr.insertCell(0);
+        //td1.appendChild(isReadCheckbox);
+
         let td1 = tr.insertCell(0);
-        td1.appendChild(isReadCheckbox);
+        td1.innerText = item.name;
 
         let td2 = tr.insertCell(1);
-        td2.innerText = item.name;
+        td2.innerText = item.author;
 
         let td3 = tr.insertCell(2);
-        td3.innerText = item.author;
+        td3.innerText = item.edition;
 
         let td4 = tr.insertCell(3);
-        td4.innerText = item.edition;
+        td4.innerText = item.description;
 
         let td5 = tr.insertCell(4);
-        td5.innerText = item.description;
+        td5.innerText = item.ean;
 
         let td6 = tr.insertCell(5);
-        td6.innerText = item.ean;
+        td6.appendChild(editButton);
 
         let td7 = tr.insertCell(6);
-        td7.appendChild(editButton);
-
-        let td8 = tr.insertCell(7);
-        td8.appendChild(deleteButton);
+        td7.appendChild(deleteButton);
     });
 
     books = data;
