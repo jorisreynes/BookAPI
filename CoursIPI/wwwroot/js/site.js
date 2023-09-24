@@ -166,6 +166,10 @@ function _displayItems(data) {
 function showForm() {
     const addForm = document.getElementById('addForm');
     addForm.style.display = 'block';
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth' 
+    });
 }
 
 function hideForm() {
