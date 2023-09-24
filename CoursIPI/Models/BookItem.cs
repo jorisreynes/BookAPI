@@ -8,6 +8,5 @@
         public string Edition { get; set; }
         public string Description { get; set; }
         public string EAN { get; set; }
-        //public bool Read { get; set; }
     }
 }

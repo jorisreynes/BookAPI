@@ -9,13 +9,10 @@
 <body>
     <h1>Liste de livres</h1>
 
-
-
     <div id="editForm">
         <h3>Éditer</h3>
         <form action="javascript:void(0);" onsubmit="updateItem()">
             <input type="hidden" id="edit-id">
-            <!--<input type="checkbox" id="edit-isRead"> Marqué comme lu-->
             <input type="text" id="edit-name">
             <input type="text" id="edit-author">
             <input type="text" id="edit-edition">
@@ -28,40 +25,21 @@
 
     <p id="counter"></p>
 
+    <div id="books"></div>
 
+    <button id="showFormButton">Ajouter un livre</button>
 
-
-
-
-
-
-
-
-
-
-    <table>
-        <thead>
-            <tr>
-                <!--<th>Lu ?</th>-->
-                <th>Nom</th>
-                <th>Auteur</th>
-                <th>Édition</th>
-                <th>Description</th>
-                <th>EAN</th>
-            </tr>
-        </thead>
-        <tbody id="books"></tbody>
-    </table>
-
-    <h3>Ajouter un livre</h3>
-    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-        <input type="text" id="add-name" placeholder="Nom">
-        <input type="text" id="add-author" placeholder="Auteur">
-        <input type="text" id="add-edition" placeholder="Édition">
-        <input type="text" id="add-description" placeholder="Description">
-        <input type="text" id="add-ean" placeholder="EAN">
-        <input type="submit" value="Ajouter">
-    </form>
+    <div id="addForm">
+        <h3>Ajouter un livre</h3>
+        <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+            <input type="text" id="add-name" placeholder="Nom">
+            <input type="text" id="add-author" placeholder="Auteur">
+            <input type="text" id="add-edition" placeholder="Édition">
+            <input type="text" id="add-description" placeholder="Description">
+            <input type="text" id="add-ean" placeholder="EAN">
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
 
     <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">

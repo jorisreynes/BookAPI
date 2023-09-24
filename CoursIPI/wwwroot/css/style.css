@@ -29,6 +29,7 @@ body {
     background-color: #f2f2f2;
     margin: 5%;
     padding: 0;
+    text-align:center;
 }
 
 h1 {
@@ -36,6 +37,7 @@ h1 {
     color: #fff;
     padding: 20px;
     text-align: center;
+    border-radius: 3px;
 }
 
 h3 {
@@ -57,13 +59,17 @@ input[type="text"] {
     border-radius: 3px;
 }
 
-input[type="submit"] {
+input[type="submit"], #showFormButton {
     background-color: #333;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 3px;
+}
+
+#showFormButton{
+    margin: 5%;
 }
 
     input[type="submit"]:hover {
@@ -114,4 +120,42 @@ a {
 #counter {
     margin-top: 20px;
     text-align: center;
+}
+
+.book {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+    .book:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+.edit-button, .delete-button {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    border-radius: 3px;
+}
+
+    .edit-button:hover, .delete-button:hover {
+        background-color: #0056b3;
+    }
+
+#addForm {
+    display: none;
 }

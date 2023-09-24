@@ -16,7 +16,6 @@ function addItem() {
     const addEANTextbox = document.getElementById('add-ean');
 
     const item = {
-/*        read: false,*/
         name: addNameTextbox.value.trim(),
         author: addAuthorTextbox.value.trim(),
         edition: addEditionTextbox.value.trim(),
@@ -36,8 +35,14 @@ function addItem() {
         .then(() => {
             getItems();
             addNameTextbox.value = '';
+            addAuthorTextbox.value = '';
+            addEditionTextbox.value = '';
+            addDescriptionTextbox.value = '';
+            addEANTextbox.value = '';
+
         })
         .catch(error => console.error('Unable to add item.', error));
+    hideForm();
 }
 
 function deleteItem(id) {
@@ -49,6 +54,10 @@ function deleteItem(id) {
 }
 
 function displayEditForm(id) {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
     document.getElementById('editForm').style.display = 'block';
     const item = books.find(item => item.id === id);
 
@@ -58,14 +67,12 @@ function displayEditForm(id) {
     document.getElementById('edit-description').value = item.description;
     document.getElementById('edit-ean').value = item.ean;
     document.getElementById('edit-id').value = item.id;
-/*    document.getElementById('edit-isRead').read = item.isRead;*/
 }
 
 function updateItem() {
     const itemId = document.getElementById('edit-id').value;
     const item = {
         id: parseInt(itemId, 10),
-/*        isRead: document.getElementById('edit-isRead').checked,*/
         name: document.getElementById('edit-name').value.trim(),
         author: document.getElementById('edit-author').value.trim(),
         edition: document.getElementById('edit-edition').value.trim(),
@@ -100,53 +107,71 @@ function _displayCount(itemCount) {
 }
 
 function _displayItems(data) {
-    const tBody = document.getElementById('books');
-    tBody.innerHTML = '';
+    const container = document.getElementById('books');
+    container.innerHTML = '';
 
     _displayCount(data.length);
 
-    const button = document.createElement('button');
-
     data.forEach(item => {
-        //let isReadCheckbox = document.createElement('input');
-        //isReadCheckbox.type = 'checkbox';
-        //isReadCheckbox.disabled = true;
-        //isReadCheckbox.checked = item.isRead;
+        let bookDiv = document.createElement('div');
+        bookDiv.className = 'book'; 
 
-        let editButton = button.cloneNode(false);
-        editButton.innerText = 'Edit';
-        editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
+        let titleElement = document.createElement('h2');
+        titleElement.innerText = item.name;
 
-        let deleteButton = button.cloneNode(false);
-        deleteButton.innerText = 'Delete';
-        deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
+        let authorElement = document.createElement('p');
+        authorElement.innerText = `Auteur: ${item.author}`;
 
-        let tr = tBody.insertRow();
+        let editionElement = document.createElement('p');
+        editionElement.innerText = `Edition: ${item.edition}`;
 
-        //let td1 = tr.insertCell(0);
-        //td1.appendChild(isReadCheckbox);
+        let descriptionElement = document.createElement('p');
+        descriptionElement.innerText = `Description: ${item.description}`;
 
-        let td1 = tr.insertCell(0);
-        td1.innerText = item.name;
+        let eanElement = document.createElement('p');
+        eanElement.innerText = `EAN: ${item.ean}`;
 
-        let td2 = tr.insertCell(1);
-        td2.innerText = item.author;
+        let editButton = document.createElement('button');
+        editButton.innerText = 'Modifier';
+        editButton.className = 'edit-button'; 
+        editButton.addEventListener('click', () => {
+            displayEditForm(item.id);
+        });
 
-        let td3 = tr.insertCell(2);
-        td3.innerText = item.edition;
+        let deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Supprimer';
+        deleteButton.className = 'delete-button';
+        deleteButton.addEventListener('click', () => {
+            deleteItem(item.id);
+        });
 
-        let td4 = tr.insertCell(3);
-        td4.innerText = item.description;
+        bookDiv.appendChild(titleElement);
+        bookDiv.appendChild(authorElement);
+        bookDiv.appendChild(editionElement);
+        bookDiv.appendChild(descriptionElement);
+        bookDiv.appendChild(eanElement);
+        bookDiv.appendChild(editButton);
+        bookDiv.appendChild(deleteButton);
+        bookDiv.appendChild(deleteButton);
 
-        let td5 = tr.insertCell(4);
-        td5.innerText = item.ean;
-
-        let td6 = tr.insertCell(5);
-        td6.appendChild(editButton);
-
-        let td7 = tr.insertCell(6);
-        td7.appendChild(deleteButton);
+        container.appendChild(bookDiv);
     });
 
     books = data;
 }
+
+
+
+
+function showForm() {
+    const addForm = document.getElementById('addForm');
+    addForm.style.display = 'block';
+}
+
+function hideForm() {
+    const addForm = document.getElementById('addForm');
+    addForm.style.display = 'none';
+}
+
+const showFormButton = document.getElementById('showFormButton');
+showFormButton.addEventListener('click', showForm);

@@ -28,29 +28,22 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-//builder.Services.AddSwaggerGen();
-
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Version = "v1",
-        Title = "Todo API",
-        Description = "A simple example ASP.NET Core Web API",
+        Title = "Book List",
+        Description = "A list to save what you have to read",
         TermsOfService = new Uri("https://google.com"),
         Contact = new Microsoft.OpenApi.Models.OpenApiContact
         {
             Name = "Joris",
-            Email = "email@email.com",
+            Email = "joris.reynes@campus-igs-toulouse.fr",
             Url = new Uri("https://google.com")
         }
     });
 });
-
-
-
-//builder.Services.AddDbContext<BookContext>(opt => opt.UseInMemoryDatabase("TodoListIpi2023"));
-
 
 //builder.Services.AddDbContext<BookContext>(options =>
 //    options.UseSqlServer("BookApiContextConnection"));
@@ -60,7 +53,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<BookContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
 
 var app = builder.Build();
 
