@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CoursIPI.Models.Context;
 using CoursIPI.NewFolder;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoursIPI.Controllers
 {
@@ -23,6 +24,7 @@ namespace CoursIPI.Controllers
 
         // GET: api/BookItems
         [HttpGet]
+        //[Authorize]
         public async Task<ActionResult<IEnumerable<BookItem>>> GetBookItems()
         {
           if (_context.BookItems == null)
