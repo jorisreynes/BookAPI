@@ -8,26 +8,19 @@
 </head>
 <body>
     <script>
-        // Vérifier l'état de connexion (par exemple, en vérifiant la présence d'un token JWT dans les cookies ou en utilisant un autre mécanisme)
         const token = localStorage.getItem('accessToken');
         
         if (token) {
-            // Utilisateur connecté, rediriger vers index.html
-            //if (token!='') { alert(token); }
-            window.location.href = "index.html";
         } else {
-            // Utilisateur non connecté, rediriger vers login.html
             window.location.href = "login.html";
         }
     </script>
-
-
 
         <h1>Votre liste de livres</h1>
 
         <div id="editForm">
             <h3>Éditer</h3>
-            <form action="javascript:void(0);" onsubmit="updateItem()">
+            <form action="javascript:void(0);" onsubmit="updateItem(token)">
                 <input type="hidden" id="edit-id">
                 <input type="text" id="edit-name">
                 <input type="text" id="edit-author">
@@ -47,7 +40,7 @@
 
         <div id="addForm">
             <h3>Ajouter un livre</h3>
-            <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+            <form action="javascript:void(0);" method="POST" onsubmit="addItem(token)">
                 <input type="text" id="add-name" placeholder="Nom">
                 <input type="text" id="add-author" placeholder="Auteur">
                 <input type="text" id="add-edition" placeholder="Édition">
@@ -59,7 +52,7 @@
 
         <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
-                getItems();
+                getItems(token);
     </script>
 </body>
 </html>

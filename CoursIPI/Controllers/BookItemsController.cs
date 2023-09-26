@@ -24,7 +24,7 @@ namespace CoursIPI.Controllers
 
         // GET: api/BookItems
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<BookItem>>> GetBookItems()
         {
           if (_context.BookItems == null)
@@ -36,6 +36,7 @@ namespace CoursIPI.Controllers
 
         // GET: api/BookItems/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<BookItem>> GetBookItems(long id)
         {
           if (_context.BookItems == null)
@@ -55,6 +56,7 @@ namespace CoursIPI.Controllers
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutBookItems(long id, BookItem bookItems)
         {
             if (id != bookItems.Id)
@@ -86,6 +88,7 @@ namespace CoursIPI.Controllers
         // POST: api/BookItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<BookItem>> PostBookItems(BookItem todoItems)
         {
           if (_context.BookItems == null)
@@ -100,6 +103,7 @@ namespace CoursIPI.Controllers
 
         // DELETE: api/BookItems/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteBookItems(long id)
         {
             if (_context.BookItems == null)

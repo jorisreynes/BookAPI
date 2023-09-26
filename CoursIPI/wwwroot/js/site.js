@@ -1,14 +1,19 @@
 ﻿const uri = 'api/BookItems';
 let books = [];
+let _token;
 
-function getItems() {
-    fetch(uri)
-        .then(response => response.json())
+function getItems(token) {
+    _token = token;
+    fetch(uri, {
+        headers: {
+            'Authorization': `Bearer ${token}` 
+        }
+    }).then(response => response.json())
         .then(data => _displayItems(data))
         .catch(error => console.error('Unable to get items.', error));
 }
 
-function addItem() {
+function addItem(token) {
     const addNameTextbox = document.getElementById('add-name');
     const addAuthorTextbox = document.getElementById('add-author');
     const addEditionTextbox = document.getElementById('add-edition');
@@ -28,13 +33,13 @@ function addItem() {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json', 
-            /*'Authorization': */
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(item)
     })
         .then(response => response.json())
         .then(() => {
-            getItems();
+            getItems(token);
             addNameTextbox.value = '';
             addAuthorTextbox.value = '';
             addEditionTextbox.value = '';
@@ -48,9 +53,12 @@ function addItem() {
 
 function deleteItem(id) {
     fetch(`${uri}/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${_token}` 
+        }
     })
-        .then(() => getItems())
+        .then(() => getItems(_token))
         .catch(error => console.error('Unable to delete item.', error));
 }
 
@@ -70,7 +78,7 @@ function displayEditForm(id) {
     document.getElementById('edit-id').value = item.id;
 }
 
-function updateItem() {
+function updateItem(token) {
     const itemId = document.getElementById('edit-id').value;
     const item = {
         id: parseInt(itemId, 10),
@@ -85,11 +93,12 @@ function updateItem() {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` 
         },
         body: JSON.stringify(item)
     })
-        .then(() => getItems())
+        .then(() => getItems(token))
         .catch(error => console.error('Unable to update item.', error));
 
     closeInput();
@@ -160,9 +169,6 @@ function _displayItems(data) {
 
     books = data;
 }
-
-
-
 
 function showForm() {
     const addForm = document.getElementById('addForm');
