@@ -2,6 +2,12 @@
 let books = [];
 let _token;
 
+document.getElementById('logoutButton').addEventListener('click', function () {
+    localStorage.removeItem('jwtToken');
+    window.location.href = 'login.html';
+});
+
+
 function getItems(token) {
     _token = token;
     fetch(uri, {

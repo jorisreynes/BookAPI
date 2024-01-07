@@ -48,6 +48,12 @@ form {
     background-color: #fff;
     padding: 10px;
     border-radius: 5px;
+}
+
+#addForm {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -71,9 +77,24 @@ input[type="submit"], #showFormButton {
     margin: 5%;
 }
 
-    input[type="submit"]:hover {
-        background-color: #555;
-    }
+
+#logoutButton {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+
+}
+
+#logoutWrapper{
+    text-align: right
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
 
 table {
     width: 100%;

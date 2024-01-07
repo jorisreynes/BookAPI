@@ -29,22 +29,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-//builder.Services.AddSwaggerGen(c =>
-//{
-//    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-//    {
-//        Version = "v1",
-//        Title = "Book List",
-//        Description = "A list to save what you have to read",
-//        TermsOfService = new Uri("https://google.com"),
-//        Contact = new Microsoft.OpenApi.Models.OpenApiContact
-//        {
-//            Name = "Joris",
-//            Email = "joris.reynes@campus-igs-toulouse.fr",
-//            Url = new Uri("https://google.com")
-//        }
-//    });
-//});
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -59,16 +43,6 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-
-
-
-
-
-
-
-
-//builder.Services.AddDbContext<BookContext>(options =>
-//    options.UseSqlServer("BookApiContextConnection"));
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

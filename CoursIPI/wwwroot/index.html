@@ -16,41 +16,45 @@
         }
     </script>
 
-        <h1>Votre liste de livres</h1>
+    <div id="logoutWrapper">
+        <button id="logoutButton">Déconnexion</button>
+    </div>
+ 
+    <h1>Votre liste de livres</h1>
+ 
+    <div id="editForm">
+        <h3>Éditer</h3>
+        <form action="javascript:void(0);" onsubmit="updateItem(token)">
+            <input type="hidden" id="edit-id">
+            <input type="text" id="edit-name">
+            <input type="text" id="edit-author">
+            <input type="text" id="edit-edition">
+            <input type="text" id="edit-description">
+            <input type="text" id="edit-ean">
+            <input type="submit" value="Enregistrer">
+            <a onclick="closeInput()" aria-label="Fermer">&#10006;</a>
+        </form>
+    </div>
 
-        <div id="editForm">
-            <h3>Éditer</h3>
-            <form action="javascript:void(0);" onsubmit="updateItem(token)">
-                <input type="hidden" id="edit-id">
-                <input type="text" id="edit-name">
-                <input type="text" id="edit-author">
-                <input type="text" id="edit-edition">
-                <input type="text" id="edit-description">
-                <input type="text" id="edit-ean">
-                <input type="submit" value="Enregistrer">
-                <a onclick="closeInput()" aria-label="Fermer">&#10006;</a>
-            </form>
-        </div>
+    <p id="counter"></p>
 
-        <p id="counter"></p>
+    <div id="books"></div>
 
-        <div id="books"></div>
+    <button id="showFormButton">Ajouter un livre</button>
 
-        <button id="showFormButton">Ajouter un livre</button>
+    <div id="addForm">
+        <h3>Ajouter un livre</h3>
+        <form action="javascript:void(0);" method="POST" onsubmit="addItem(token)">
+            <input type="text" id="add-name" placeholder="Nom">
+            <input type="text" id="add-author" placeholder="Auteur">
+            <input type="text" id="add-edition" placeholder="Édition">
+            <input type="text" id="add-description" placeholder="Description">
+            <input type="text" id="add-ean" placeholder="EAN">
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
 
-        <div id="addForm">
-            <h3>Ajouter un livre</h3>
-            <form action="javascript:void(0);" method="POST" onsubmit="addItem(token)">
-                <input type="text" id="add-name" placeholder="Nom">
-                <input type="text" id="add-author" placeholder="Auteur">
-                <input type="text" id="add-edition" placeholder="Édition">
-                <input type="text" id="add-description" placeholder="Description">
-                <input type="text" id="add-ean" placeholder="EAN">
-                <input type="submit" value="Ajouter">
-            </form>
-        </div>
-
-        <script src="js/site.js" asp-append-version="true"></script>
+    <script src="js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
                 getItems(token);
     </script>
