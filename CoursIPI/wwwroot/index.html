@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste de livres</title>
+    <title>Book list</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -17,13 +17,13 @@
     </script>
 
     <div id="logoutWrapper">
-        <button id="logoutButton">Déconnexion</button>
+        <button id="logoutButton">Logout</button>
     </div>
  
-    <h1>Votre liste de livres</h1>
+    <h1>Your book list</h1>
  
     <div id="editForm">
-        <h3>Éditer</h3>
+        <h3>Edit</h3>
         <form action="javascript:void(0);" onsubmit="updateItem(token)">
             <input type="hidden" id="edit-id">
             <input type="text" id="edit-name">
@@ -31,7 +31,7 @@
             <input type="text" id="edit-edition">
             <input type="text" id="edit-description">
             <input type="text" id="edit-ean">
-            <input type="submit" value="Enregistrer">
+            <input type="submit" value="Save">
             <a onclick="closeInput()" aria-label="Fermer">&#10006;</a>
         </form>
     </div>
@@ -40,17 +40,17 @@
 
     <div id="books"></div>
 
-    <button id="showFormButton">Ajouter un livre</button>
+    <button id="showFormButton">Add a book</button>
 
     <div id="addForm">
-        <h3>Ajouter un livre</h3>
+        <h3>Add a book</h3>
         <form action="javascript:void(0);" method="POST" onsubmit="addItem(token)">
-            <input type="text" id="add-name" placeholder="Nom">
-            <input type="text" id="add-author" placeholder="Auteur">
-            <input type="text" id="add-edition" placeholder="Édition">
+            <input type="text" id="add-name" placeholder="Name">
+            <input type="text" id="add-author" placeholder="Author">
+            <input type="text" id="add-edition" placeholder="Edition">
             <input type="text" id="add-description" placeholder="Description">
             <input type="text" id="add-ean" placeholder="EAN">
-            <input type="submit" value="Ajouter">
+            <input type="submit" value="Add">
         </form>
     </div>
 

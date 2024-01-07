@@ -29,10 +29,10 @@ document.querySelector('form').addEventListener('submit', function (event) {
                 window.location.href = 'index.html';
             });
         } else {
-            console.error('Échec de l\'authentification');
+            console.error('Authentification error');
         }
     })
         .catch(error => {
-            console.error('Erreur de la requête', error);
+            console.error('Request error', error);
         });
 });

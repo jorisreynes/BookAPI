@@ -117,9 +117,9 @@ function closeInput() {
 }
 
 function _displayCount(itemCount) {
-    const name = (itemCount === 1) ? 'livre dans votre liste' : 'livres dans votre liste';
+    const name = (itemCount === 1) ? 'book in your book list' : 'books in your book list';
 
-    document.getElementById('counter').innerText = `Vous avez ${itemCount} ${name}`;
+    document.getElementById('counter').innerText = `You have ${itemCount} ${name}`;
 }
 
 function _displayItems(data) {
@@ -136,7 +136,7 @@ function _displayItems(data) {
         titleElement.innerText = item.name;
 
         let authorElement = document.createElement('p');
-        authorElement.innerText = `Auteur: ${item.author}`;
+        authorElement.innerText = `Author: ${item.author}`;
 
         let editionElement = document.createElement('p');
         editionElement.innerText = `Edition: ${item.edition}`;
@@ -148,14 +148,14 @@ function _displayItems(data) {
         eanElement.innerText = `EAN: ${item.ean}`;
 
         let editButton = document.createElement('button');
-        editButton.innerText = 'Modifier';
+        editButton.innerText = 'Edit';
         editButton.className = 'edit-button'; 
         editButton.addEventListener('click', () => {
             displayEditForm(item.id);
         });
 
         let deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Supprimer';
+        deleteButton.innerText = 'Delete';
         deleteButton.className = 'delete-button';
         deleteButton.addEventListener('click', () => {
             deleteItem(item.id);
